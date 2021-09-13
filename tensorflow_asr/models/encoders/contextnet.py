@@ -14,9 +14,10 @@
 """ Ref: https://github.com/iankur/ContextNet """
 
 from typing import List
+
 import tensorflow as tf
 
-from tensorflow_asr.utils import math_util
+from ...utils import math_util
 
 L2 = tf.keras.regularizers.l2(1e-6)
 

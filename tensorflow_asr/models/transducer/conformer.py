@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from tensorflow_asr.models.encoders.conformer import L2, ConformerEncoder
-from tensorflow_asr.models.transducer.base_transducer import Transducer
+
+from ..encoders.conformer import L2, ConformerEncoder
+from .transducer import Transducer
 
 
 class Conformer(Transducer):

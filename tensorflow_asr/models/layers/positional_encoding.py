@@ -14,7 +14,7 @@
 
 import tensorflow as tf
 
-from tensorflow_asr.utils.shape_util import shape_list
+from ...utils.shape_util import shape_list
 
 
 class PositionalEncoding(tf.keras.layers.Layer):
@@ -68,8 +68,7 @@ class PositionalEncoding(tf.keras.layers.Layer):
 
     def get_config(self):
         conf = super().get_config()
-        conf.update({"alpha": self.alpha, "beta": self.beta})
-        return conf
+        return conf.update({"alpha": self.alpha, "beta": self.beta})
 
 
 class PositionalEncodingConcat(PositionalEncoding):

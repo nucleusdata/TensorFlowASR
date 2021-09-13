@@ -13,7 +13,9 @@
 # limitations under the License.
 
 import tensorflow as tf
-from tensorflow_asr.augmentations.methods import specaugment
+
+from .methods import specaugment
+
 
 AUGMENTATIONS = {
     "freq_masking": specaugment.FreqMasking,
@@ -23,8 +25,7 @@ AUGMENTATIONS = {
 
 class Augmentation:
     def __init__(self, config: dict = None):
-        if not config:
-            config = {}
+        if not config: config = {}
         self.prob = float(config.pop("prob", 0.5))
         self.signal_augmentations = self.parse(config.pop("signal_augment", {}))
         self.feature_augmentations = self.parse(config.pop("feature_augment", {}))
@@ -50,7 +51,8 @@ class Augmentation:
         for key, value in config.items():
             au = AUGMENTATIONS.get(key, None)
             if au is None:
-                raise KeyError(f"No tf augmentation named: {key}\n" f"Available tf augmentations: {AUGMENTATIONS.keys()}")
+                raise KeyError(f"No tf augmentation named: {key}\n"
+                               f"Available tf augmentations: {AUGMENTATIONS.keys()}")
             aug = au(**value) if value is not None else au()
             augmentations.append(aug)
         return augmentations
